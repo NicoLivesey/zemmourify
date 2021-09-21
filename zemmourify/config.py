@@ -6,4 +6,5 @@ WEIGHTS = {
     0.15,  # phonex
 }
 PATH_CSV = "data/prenoms.csv"
+PATH_DB = "data/db.txt"
 WIKI_PAGE = "Liste_de_prénoms_en_français"

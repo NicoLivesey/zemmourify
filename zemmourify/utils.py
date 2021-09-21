@@ -1,14 +1,16 @@
 import re
-from functools import lru_cache
+from pathlib import Path
 
 import pandas as pd
 import phonetics
 import textdistance
 import wikipedia
 from abydos import phonetic
+from loguru import logger
 from unidecode import unidecode
 
-from zemmourify.config import PATH_CSV, WEIGHTS, WIKI_PAGE
+from zemmourify.config import PATH_CSV, PATH_DB, WEIGHTS, WIKI_PAGE
+from zemmourify.logs import log
 
 wikipedia.set_lang("fr")
 
@@ -35,9 +37,18 @@ def _load_wiki():
     return [_clean(x[-1]) for x in prenoms]
 
 
-@lru_cache(maxsize=None)
+@log("DB Loading")
 def _load_firstnames():
-    return [x for x in set(_load_csv()).union(_load_wiki()) if len(x) > 1]
+    if Path(PATH_DB).exists():
+        logger.info("Loading database from cache")
+        with open(PATH_DB) as f:
+            prenoms = f.read().split("\n")
+    else:
+        prenoms = [x for x in set(_load_csv()).union(_load_wiki()) if len(x) > 1]
+        logger.info(f"Saving database to {Path(PATH_DB).absolute()}")
+        with open(PATH_DB, "w") as f:
+            f.write("\n".join(prenoms))
+    return prenoms
 
 
 def _cast(s):
@@ -62,6 +73,7 @@ def _distance(s1, s2):
     return total
 
 
+@log("Query")
 def query(target):
     table = _load_firstnames()
     return sorted(table, key=lambda x: _distance(x, target))[:10]
