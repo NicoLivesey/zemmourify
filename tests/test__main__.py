@@ -8,12 +8,12 @@ runner = CliRunner()
 
 
 def test_app():
-    result = runner.invoke(app, ["square", "--number", "3"])
+    result = runner.invoke(app, ["Jindun"])
     assert result.exit_code == 0
-    assert "9" in result.stdout
+    assert "Jourdain" in result.stdout
 
 
 def test_run_as_scrip():
-    cmd = "python -m zemmourify square --number 2"
+    cmd = "python -m zemmourify Jindun"
     out = subprocess.check_output(cmd.split(" "))
-    assert "4" in str(out)
+    assert "Justin" in str(out)
