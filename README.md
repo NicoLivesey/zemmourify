@@ -1,10 +1,16 @@
 # zemmourify
+A simple tool that helps you to prepare yourself for "Le Grand Remplacement" and gives you some french firstnames in replacement of the one you are currently using
 
 ## Setup env
 
 Install dependencies
 ```bash
 make init
+```
+
+Simply use it now
+```bash
+zemmourify [your name]
 ```
 
 Some useful commands
