@@ -41,6 +41,11 @@ def configure_logger():
     logging.basicConfig(handlers=[InterceptHandler()], level=logging.INFO)
 
 
+def mute_logger():
+    logger.remove()
+    logger.add(sys.stderr, level="WARNING")
+
+
 class InterceptHandler(logging.Handler):
     def emit(self, record):
         # Ignore some over-verbose useless logs

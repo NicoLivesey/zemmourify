@@ -74,6 +74,6 @@ def _distance(s1, s2):
 
 
 @log("Query")
-def query(target):
+def query(target, log):
     table = _load_firstnames()
     return sorted(table, key=lambda x: _distance(x, target))[:10]
