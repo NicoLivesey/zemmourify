@@ -1,0 +1,67 @@
+{
+  // Use black for python formatting
+  "python.formatting.provider": "black",
+  "python.formatting.blackArgs": ["--config", "pyproject.toml"],
+  
+  // Auto format on Save
+  "editor.formatOnSave": false,
+  "editor.detectIndentation": false,
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4
+  },
+  "[yaml]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  },
+
+  // Auto sort imports
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+  
+  // linter with flake8
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true,
+  
+  // linter with mypy
+  "python.linting.mypyEnabled": true,
+
+  // Unit testing
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true,
+  "python.testing.pytestArgs": ["tests", "--no-cov"],
+  "python.testing.nosetestsEnabled": false,
+  "python.testing.autoTestDiscoverOnSaveEnabled": false,
+
+  "files.watcherExclude": {
+    "data/**": true,
+    "cov-report/**": true,
+    "lightning_logs/**": true,
+    "mlruns/**": true,
+    "models/**": true,
+    "s3data/**": true
+  },
+  "python.dataScience.debugJustMyCode": false,
+
+  // Hide in the edictor
+  "files.exclude": {
+    ".git": true,
+    "**/.DS_Store": true,
+    "**/.coverage": true,
+    "**/.pytest_cache": true,
+    "**/__pycache__": true,
+    "**/.ipynb_checkpoints": true,
+    ".coverage.*": true,
+    "mlruns": true,
+    "tensorboard_logs": true,
+    ".mypy_cache": true,
+    "lightning_logs": true,
+    "cov-report": true,
+    "public": true,
+    "dist": true,
+    "build": true,
+    "**/.keep": true
+  }
+}

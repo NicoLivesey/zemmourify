@@ -1,0 +1,63 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "zemmourify"
+author = "La Javaness"
+dist-name = "zemmourify"
+home-page = "https://gitlab.com/ljn/teams/data/sandbox-python-packaging/zemmourify"
+description-file = "README.md"
+requires-python = ">=3.7"
+requires = [
+  "typer >=0.3.2,<1.0.0",
+  "loguru >=0.5.3,<1.0.0",
+  "python-dotenv >=0.15.0,<1.0.0"
+]
+
+[tool.flit.metadata.urls]
+Documentation = "https://ljn.gitlab.io/teams/data/sandbox-python-packaging/zemmourify"
+
+[tool.flit.scripts]
+zemmourify = "zemmourify.__main__:app"
+
+[tool.flit.metadata.requires-extra]
+test = [
+  "pytest >=6.2.0,<7.0.0",
+  "pytest-cov >=2.10.0,<3.0.0"
+]
+doc = [
+]
+dev = [
+  "mypy >=0.782",
+  "flake8 >=3.8.3,<4.0.0",
+  "black >=19.10b0",
+  "isort >=5.0.6,<6.0.0",
+  "pre-commit >=2.7.1"
+]
+all = [
+
+]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = '''
+  -rsxX -q
+  --cov=zemmourify
+  --cov-report=term-missing
+  --cov-report=html:cov-report/htmlcov
+  --cov-report=xml:cov-report/cobertura.xml
+  --durations=5
+'''
+testpaths = [
+  "tests"
+]
+
+[tool.isort]
+profile = "black"
+known_third_party = []
+
+[tool.black]
+line-length = 100
+target-version = ['py37']
+include = '\.pyi?$'

@@ -1,0 +1,7 @@
+__pycache__
+models/
+data/
+notebooks/
+docs/
+.git
+.pytest_cache

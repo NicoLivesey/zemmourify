@@ -1,0 +1,40 @@
+repos:
+  - repo: git@gitlab.com:ljn/teams/data/tools/ljn-precommit-hooks.git
+    rev: "0.0.4"
+    hooks:
+      # linter: flake8 (config in .flake8)
+      - id: check-flake8
+        args: ["zemmourify/", "tests/"]
+      
+      # linter: black (config in pyproject.toml)
+      - id: check-black
+        args: ["zemmourify/", "tests/"]
+
+      # linter: mypy (config in mypy.ini)
+      - id: check-mypy
+        args: ["zemmourify/", "tests/"]
+
+      # linter: isort (config in pyproject.toml)
+      - id: check-isort
+        args: ["zemmourify/", "tests/"]
+
+      # linter commit message      
+      - id: check-commit-message
+        stages: [commit-msg]
+
+      #  Forbid direct commit to master branch (only accept merge)
+      - id: check-no-commit-to-branch
+        name: No commit directly to master
+        args: ["--branch", "master"]
+        # args: ["--branch", "master", "--branch", "develop"]
+
+      # Forbid adding file larger than 500 kb
+      - id: check-added-large-files
+        args: ["--maxkb=500"]
+
+      # Check for merge residue
+      - id: check-merge-conflict
+
+      # Check for debug residue
+      - id: check-debug-statements
+        files: zemmourify/|tests/
