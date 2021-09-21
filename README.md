@@ -8,7 +8,7 @@ Install dependencies
 make init
 ```
 
-Simply use it now
+How to use
 ```bash
 zemmourify [your name]
 ```
